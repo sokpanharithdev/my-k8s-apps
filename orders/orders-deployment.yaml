@@ -1,0 +1,23 @@
+# orders-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-api
+  namespace: orders
+  labels:
+    app: orders
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+        - name: orders
+          image: nginx   # pretend this is your payments API
+          ports:
+            - containerPort: 80
