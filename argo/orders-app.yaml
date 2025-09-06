@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: orders-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sokpanharithdev/my-k8s-apps.git
+    targetRevision: main
+    path: orders
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: orders
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
